@@ -456,7 +456,7 @@
 <body>
     <header class="vx-header">
         <div class="vx-header-inner">
-            <a href="/marketplace" class="vx-logo">
+            <a href="/marketplace.html" class="vx-logo">
                 <div class="vx-logo-icon">
                     <svg viewBox="0 0 24 24" fill="none">
                         <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#1e293b"/>
@@ -467,8 +467,8 @@
                 VAULTORX
             </a>
             <div class="vx-header-actions">
-                <a href="/dashboard" class="vx-btn-login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
-                <a href="/dashboard" class="vx-btn-signup"><i class="bi bi-person-plus"></i> Sign Up</a>
+                <a href="/dashboard.html" class="vx-btn-login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+                <a href="/dashboard.html" class="vx-btn-signup"><i class="bi bi-person-plus"></i> Sign Up</a>
             </div>
         </div>
     </header>
@@ -503,7 +503,7 @@
                     <div class="vx-loading">
                         <i class="bi bi-exclamation-circle" style="font-size: 3rem;"></i>
                         <h4>Artwork not found</h4>
-                        <a href="/marketplace" class="vx-buy-btn" style="display: inline-block; margin-top: 1rem;">Back to Marketplace</a>
+                        <a href="/marketplace.html" class="vx-buy-btn" style="display: inline-block; margin-top: 1rem;">Back to Marketplace</a>
                     </div>
                 `;
             }
@@ -535,7 +535,7 @@
                     <div class="vx-loading">
                         <i class="bi bi-exclamation-circle" style="font-size: 3rem;"></i>
                         <h4>Error loading artwork</h4>
-                        <a href="/marketplace" class="vx-buy-btn" style="display: inline-block; margin-top: 1rem;">Back to Marketplace</a>
+                        <a href="/marketplace.html" class="vx-buy-btn" style="display: inline-block; margin-top: 1rem;">Back to Marketplace</a>
                     </div>
                 `;
             }
@@ -569,7 +569,7 @@
             
             document.getElementById('mainContent').innerHTML = `
                 <nav class="vx-breadcrumb">
-                    <a href="/marketplace">Marketplace</a>
+                    <a href="/marketplace.html">Marketplace</a>
                     <i class="bi bi-chevron-right"></i>
                     <a href="category.html?category=${encodeURIComponent(currentNFT.category || 'Art')}">${currentNFT.category || 'Art'}</a>
                     <i class="bi bi-chevron-right"></i>
