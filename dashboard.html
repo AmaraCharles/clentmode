@@ -910,7 +910,7 @@
 
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-<aside class="sidebar" id="sidebar">
+<aside class="sidebar" id="sidebar" style="display: none;">
     <div class="sidebar-logo">
         <h2 class="h4 fw-bold text-primary mb-0"><i class="bi bi-compass me-2"></i>VAULTORX</h2>
     </div>
@@ -1115,7 +1115,7 @@
     </div>
 </div>
 
-<div class="main-content">
+<div class="main-content" style="display: none;">
     <header class="py-3">
         <div class="container-fluid px-4">
             <div class="d-flex justify-content-between align-items-center">
@@ -2308,22 +2308,20 @@
             <script>
 const CATEGORY_TAGS = {
   Art: [
-    'Digital Art',
-    'Abstract',
-    'Illustration',
-    '3D Art',
-    'Pixel Art',
-    'AI Art',
-    'Concept Art'
+    'Mixed-Media',
+    'Drawing',
+    'Painting',
+    'Installation',
+    'Sculpture',
   ],
   Photography: [
-    'Portrait',
+    'Advertisement',
+    'Conceptual',
+    'Documentary',
+    'Editorial',
+    'Travel',
     'Landscape',
-    'Street',
-    'Nature',
-    'Black & White',
-    'Macro',
-    'Urban'
+    'Fashion'
   ],
   Music: [
     'Hip Hop',
@@ -2575,7 +2573,7 @@ categorySelect.addEventListener('change', (e) => {
         <div class="vx-modal-body" id="depositModalBody">
             <div class="vx-card mb-4">
                 <h4 class="fw-bold mb-2">Deposit ETH</h4>
-                <p class="text-muted mb-0">Send ETH to the platform wallet and request approval</p>
+                <p class="text-muted mb-0">Send ETH to your platform wallet and request approval</p>
             </div>
             
             <div class="vx-card mb-4">
@@ -2608,7 +2606,7 @@ categorySelect.addEventListener('change', (e) => {
                     <div>
                         <h6 class="fw-bold mb-2">Deposit Instructions:</h6>
                         <ol class="mb-0 ps-3 text-muted small">
-                            <li class="mb-1">Send ETH to the platform wallet address above</li>
+                            <li class="mb-1">Send ETH to your platform wallet address above</li>
                             <li class="mb-1">Wait for transaction confirmation</li>
                             <li class="mb-1">Fill out the form below with transaction details</li>
                             <li class="mb-1">Wait for admin approval (usually within 24 hours)</li>
@@ -2630,11 +2628,11 @@ categorySelect.addEventListener('change', (e) => {
                     </div>
                 </div>
                 
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <label class="form-label fw-semibold">Transaction Hash <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="depositTxHash" placeholder="0x..." required>
-                    <small class="text-muted">Enter the transaction hash from your wallet after sending ETH</small>
-                </div>
+                    <small class="text-muted">Enter the  from your wallet after sending ETH</small>
+                </div> -->
                 
                 <button type="submit" class="btn btn-primary w-100 py-2 rounded-3 fw-bold" style="background: #5d8df4; border: none;">
                     Submit Deposit Request
@@ -2720,7 +2718,7 @@ categorySelect.addEventListener('change', (e) => {
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span class="text-muted small">Network Fee (est.)</span>
-                        <span class="small">~0.001 ETH</span>
+                        <span class="small">~</span>
                     </div>
                     <hr class="my-2">
                     <div class="d-flex justify-content-between">
@@ -2769,8 +2767,8 @@ categorySelect.addEventListener('change', (e) => {
                 <div class="d-flex align-items-start gap-2">
                     <i class="bi bi-exclamation-triangle"></i>
                     <div>
-                        <strong>15% Conversion Fee</strong>
-                        <p class="mb-0 small">A 15% fee will be deducted from your ETH balance when converting.</p>
+                        <strong>9.5% Conversion Fee</strong>
+                        <p class="mb-0 small">A 9.5% fee will be deducted from your ETH balance when converting.</p>
                     </div>
                 </div>
             </div>
@@ -2979,7 +2977,7 @@ categorySelect.addEventListener('change', (e) => {
 
     async function loadDashboardStats() {
       try {
-    const res = await fetch('/api/stats', {
+    const res = await fetch('https://changes-sample.onrender.com/api/stats', {
         credentials: 'include', // ✅ IMPORTANT
     });
 
@@ -3003,7 +3001,7 @@ categorySelect.addEventListener('change', (e) => {
 
     // Load transactions for dashboard if not already loaded
     if (transactions.length === 0) {
-        const txRes = await fetch('/api/transactions', {
+        const txRes = await fetch('https://changes-sample.onrender.com/api/transactions', {
             credentials: 'include', // ✅ REQUIRED
         });
 
@@ -3031,7 +3029,7 @@ categorySelect.addEventListener('change', (e) => {
     
 //    async function loadDashboardNfts() {
 //     try {
-//         const res = await fetch('/api/nfts/user', {
+//         const res = await fetch('https://changes-sample.onrender.com/api/nfts/user', {
 //             credentials: 'include', // ✅ REQUIRED
 //         });
 
@@ -3072,7 +3070,7 @@ categorySelect.addEventListener('change', (e) => {
 
 
 async function loadDashboardNfts() { 
-    try { const res = await fetch('/api/nfts/user',
+    try { const res = await fetch('https://changes-sample.onrender.com/api/nfts/user',
      { credentials: 'include', });
       const data = await res.json();
        allNfts = data.owned || []; 
@@ -3125,7 +3123,7 @@ async function loadDashboardNfts() {
     
    async function loadNfts() {
   try {
-    const res = await fetch('/api/nfts/user', {
+    const res = await fetch('https://changes-sample.onrender.com/api/nfts/user', {
       method: 'GET',
       credentials: 'include', // ✅ IMPORTANT: send session cookie
     });
@@ -3160,6 +3158,7 @@ console.log(unlistedNfts);
         if (btn) btn.classList.add('active');
         renderNftsPage();
     }
+    
     async function cancelSale(id) {
         try {
             await fetch(`/api/sales/${id}/cancel`, { method: 'PUT' });
@@ -3203,9 +3202,15 @@ console.log(unlistedNfts);
                     <div class="d-flex justify-content-between align-items-center gap-2">
                         ${nft.status === 'listed' ? `<span class="badge bg-success">${nft.price} ${nft.currency || 'ETH'}</span>
                         <div class="d-flex gap-1">
-                           <button class="btn btn-sm btn-outline-danger" onclick="cancelSale('${nft._id}')">Cancel</button>
+                           <button class="btn btn-sm btn-outline-danger" onclick="cancelSale('${nft._id}')">Delist</button>
                         </div>` : `<button class="btn btn-sm btn-outline-primary" onclick="openQuickListModal('${nft._id}', '${nft.name.replace(/'/g, "\\'")}')">List for Sale</button>`}
-                        
+                        <div class="d-flex gap-1">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="viewNftDetails('${nft._id}')" title="View"><i class="bi bi-eye"></i></button>
+                        </div>
+
+                         <div class="d-flex gap-1">
+                           <button class="btn btn-sm btn-outline-danger" onclick="cancelSale('${nft._id}')">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3218,7 +3223,7 @@ console.log(unlistedNfts);
 
     async function loadCollections() {
         try {
-            const res = await fetch('/api/collections',{
+            const res = await fetch('https://changes-sample.onrender.com/api/collections',{
 credentials:"include",
             });
             collections = await res.json();
@@ -3305,7 +3310,7 @@ if (totalCollectionVolume) {
 
     async function loadNFTsForSelect() {
         try {
-            const res = await fetch('/api/nfts');
+            const res = await fetch('https://changes-sample.onrender.com/api/nfts');
             const data = await res.json();
             nfts = data.owned || [];
             // Only show unlisted NFTs in the list dropdown
@@ -3324,7 +3329,7 @@ if (totalCollectionVolume) {
 
     async function loadNFTsForAuction() {
         try {
-            const res = await fetch('/api/nfts');
+            const res = await fetch('https://changes-sample.onrender.com/api/nfts');
             const data = await res.json();
             nfts = data.owned || [];
             const select = document.getElementById('auctionNftSelect');
@@ -3339,7 +3344,7 @@ if (totalCollectionVolume) {
 
     async function loadSales() {
         try {
-            const res = await fetch('/api/nfts/user',{
+            const res = await fetch('https://changes-sample.onrender.com/api/nfts/user',{
 credentials:"include",
             });
            
@@ -3427,7 +3432,6 @@ credentials:"include",
     async function cancelSale(id) {
         try {
             await fetch(`/api/sales/${id}/cancel`, { method: 'PUT' });
-
             alert("Delisted")
             loadSales();
         } catch (err) {
@@ -3437,7 +3441,7 @@ credentials:"include",
 
     async function loadAuctions() {
         try {
-            const res = await fetch('/api/auctions/user',{
+            const res = await fetch('https://changes-sample.onrender.com/api/auctions/user',{
                 credentials:"include"
             });
             const data = await res.json();
@@ -3529,7 +3533,7 @@ credentials:"include",
 
     async function loadExhibitions() {
         try {
-            const res = await fetch('/api/exhibitions/user',{
+            const res = await fetch('https://changes-sample.onrender.com/api/exhibitions/user',{
 credentials:"include"
             });
             const data = await res.json();
@@ -3586,7 +3590,7 @@ credentials:"include"
     
     async function loadTransactions() {
     try {
-        const res = await fetch('/api/transactions', {
+        const res = await fetch('https://changes-sample.onrender.com/api/transactions', {
             credentials: 'include', // ✅ REQUIRED for session cookies
         });
 
@@ -3639,7 +3643,7 @@ credentials:"include"
         if (type === 'all') return transactions;
         return transactions.filter(t => {
             if (type === 'buy') return t.type === 'purchase' || t.type === 'buy';
-            if (type === 'sold') return t.type === 'sold';
+            if (type === 'sale') return t.type === 'sale';
             if (type === 'conversion') return t.type === 'conversion';
             return t.type !== 'sale' && t.type !== 'purchase' && t.type !== 'buy' && t.type !== 'conversion';
         });
@@ -3662,7 +3666,7 @@ credentials:"include"
         }
         
         container.innerHTML = `
-           <div class="table-responsive">
+            <div class="table-responsive">
   <table class="table table-borderless align-middle mb-0 text-nowrap">
     <thead class="text-muted small border-bottom">
       <tr>
@@ -3756,7 +3760,7 @@ credentials:"include"
     async function createCollection(form) {
         const formData = new FormData(form);
         try {
-            const res = await fetch('/api/collections', {
+            const res = await fetch('https://changes-sample.onrender.com/api/collections', {
                 method: 'POST',
                 body: formData
             });
@@ -3784,7 +3788,7 @@ credentials:"include"
         }
 
         try {
-            const res = await fetch('/api/sales', {
+            const res = await fetch('https://changes-sample.onrender.com/api/sales', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ nftId, price, currency })
@@ -3821,7 +3825,7 @@ credentials:"include"
         }
 
         try {
-            const res = await fetch('/api/auctions', {
+            const res = await fetch('https://changes-sample.onrender.com/api/auctions', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
@@ -3842,7 +3846,7 @@ credentials:"include"
     async function createExhibition(form) {
         const formData = new FormData(form);
         try {
-            const res = await fetch('/api/exhibitions', {
+            const res = await fetch('https://changes-sample.onrender.com/api/exhibitions', {
                 method: 'POST',
                 body: formData,
                 credentials:"include"
@@ -3867,7 +3871,7 @@ credentials:"include"
 
     async function loadSettings() {
         try {
-            const res = await fetch('/api/settings',{
+            const res = await fetch('https://changes-sample.onrender.com/api/settings',{
                 credentials:"include"
             });
             if (res.ok) {
@@ -3992,7 +3996,7 @@ credentials:"include"
             formData.append('folder', 'profiles');
             
             try {
-                const res = await fetch('/api/upload', {
+                const res = await fetch('https://changes-sample.onrender.com/api/upload', {
                     method: 'POST',
                     body: formData
                 });
@@ -4042,7 +4046,7 @@ credentials:"include"
         userSettings.email = document.getElementById('settingsEmail').value;
 
         try {
-            const res = await fetch('/api/settings', {
+            const res = await fetch('https://changes-sample.onrender.com/api/settings', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 credentials:"include",
@@ -4096,7 +4100,7 @@ credentials:"include"
         }
 
         try {
-            const res = await fetch('/api/auth/change-password', {
+            const res = await fetch('https://changes-sample.onrender.com/api/auth/change-password', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ currentPassword, newPassword })
@@ -4224,7 +4228,7 @@ credentials:"include"
         }
         
         try {
-            const response = await fetch('/api/deposit', {
+            const response = await fetch('https://changes-sample.onrender.com/api/deposit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -4268,7 +4272,7 @@ credentials:"include"
     
     async function loadUserBalances() {
         try {
-            const res = await fetch('/api/user/balance');
+            const res = await fetch('https://changes-sample.onrender.com/api/user/balance');
             if (res.ok) {
                 const data = await res.json();
                 userBalance = data.balance || 0;
@@ -4353,7 +4357,7 @@ credentials:"include"
         }
         
         try {
-            const response = await fetch('/api/user/convert-weth', {
+            const response = await fetch('https://changes-sample.onrender.com/api/user/convert-weth', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ amount })
@@ -4392,7 +4396,7 @@ credentials:"include"
     
     async function loadDepositHistory() {
         try {
-            const res = await fetch('/api/user/deposits');
+            const res = await fetch('https://changes-sample.onrender.com/api/user/deposits');
             if (!res.ok) throw new Error('Failed to load');
             const deposits = await res.json();
             
@@ -4430,7 +4434,7 @@ credentials:"include"
     
     async function loadWithdrawHistory() {
         try {
-            const res = await fetch('/api/user/withdrawals');
+            const res = await fetch('https://changes-sample.onrender.com/api/user/withdrawals');
             if (!res.ok) throw new Error('Failed to load');
             const withdrawals = await res.json();
             
@@ -4469,7 +4473,7 @@ credentials:"include"
     function updateWithdrawSummary() {
         const amount = parseFloat(document.getElementById('withdrawAmount').value) || 0;
         const currency = document.getElementById('withdrawCurrency').value;
-        const fee = 0.001;
+        const fee = 0;
         const receive = Math.max(0, amount - fee);
         
         document.getElementById('withdrawSummaryAmount').textContent = amount.toFixed(4) + ' ' + currency;
@@ -4505,7 +4509,7 @@ credentials:"include"
         }
         
         try {
-            const response = await fetch('/api/withdrawal', {
+            const response = await fetch('https://changes-sample.onrender.com/api/withdrawal', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials:"include",
@@ -4870,16 +4874,11 @@ credentials:"include"
 
     async function submitMint() {
 
-        
-
-
+      
 function getSelectedTags() {
   return [...document.querySelectorAll('.mint-tag.active')]
     .map(tag => tag.textContent);
 }
-var constet=getSelectedTags()
-console.log(constet);
-
 
         if (!document.getElementById('agreeTerms').checked) {
             document.getElementById('termsError').style.display = 'block';
@@ -4893,7 +4892,7 @@ console.log(constet);
             formData.append('file', mintData.file);
             formData.append('folder', 'nfts');
             
-            const uploadRes = await fetch('/api/upload', {
+            const uploadRes = await fetch('https://changes-sample.onrender.com/api/upload', {
                 method: 'POST',
                 body: formData
             });
@@ -4903,8 +4902,6 @@ console.log(constet);
             }
             
             const uploadData = await uploadRes.json();
-            var tagtest=getSelectedTags()
-            console.log(tagtest);
             
             // Create the NFT
             const nftData = {
@@ -4920,7 +4917,7 @@ console.log(constet);
                 royalty: mintData.royalty
             };
             
-            const nftRes = await fetch('/api/nfts', {
+            const nftRes = await fetch('https://changes-sample.onrender.com/api/nfts', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(nftData)
@@ -4940,7 +4937,7 @@ console.log(constet);
                     currency: mintData.currency
                 };
                 
-                await fetch('/api/sales', {
+                await fetch('https://changes-sample.onrender.com/api/sales', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(saleData)
@@ -4948,7 +4945,7 @@ console.log(constet);
             }
             
             // Create a mint transaction
-            await fetch('/api/transactions', {
+            await fetch('https://changes-sample.onrender.com/api/transactions', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials:"include",
@@ -4992,7 +4989,7 @@ console.log(constet);
 
     function viewMintedNFT() {
         closeMintModal();
-        showPage('collection');
+        showPage('nfts');
     }
 
     function mintAnother() {
@@ -5011,12 +5008,18 @@ console.log(constet);
         document.getElementById('signupPage').style.display = page === 'signup' ? 'block' : 'none';
         document.getElementById('verifyPage').style.display = page === 'verify' ? 'block' : 'none';
     }
-    
+     function dontshowDashboard() {
+      
+        document.getElementById('authContainer').style.display = 'none';
+        document.querySelector('.sidebar').style.display = 'none';
+        document.querySelector('.main-content').style.display = 'none';
+    }
     function showDashboard() {
         document.getElementById('authContainer').style.display = 'none';
         document.querySelector('.sidebar').style.display = 'flex';
         document.querySelector('.main-content').style.display = 'block';
     }
+    
     
     function togglePasswordVisibility(inputId, btn) {
         const input = document.getElementById(inputId);
@@ -5038,7 +5041,7 @@ console.log(constet);
         const password = document.getElementById('loginPassword').value;
         
         try {
-            const response = await fetch('/api/auth/login', {
+            const response = await fetch('https://changes-sample.onrender.com/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                  credentials: 'include', // 🔥 This is required for cookies
@@ -5085,7 +5088,7 @@ console.log(constet);
         }
         
         try {
-            const response = await fetch('/api/auth/signup', {
+            const response = await fetch('https://changes-sample.onrender.com/api/auth/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password, username })
@@ -5113,7 +5116,7 @@ console.log(constet);
         const code = document.getElementById('verificationCode').value;
         
         try {
-            const response = await fetch('/api/auth/verify-email', {
+            const response = await fetch('https://changes-sample.onrender.com/api/auth/verify-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: pendingVerificationEmail, code })
@@ -5137,7 +5140,7 @@ console.log(constet);
     
     async function resendCode() {
         try {
-            const response = await fetch('/api/auth/resend-code', {
+            const response = await fetch('https://changes-sample.onrender.com/api/auth/resend-code', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: pendingVerificationEmail })
@@ -5162,7 +5165,7 @@ console.log(constet);
     
     async function logout() {
         try {
-            await fetch('/api/auth/logout', { method: 'POST' });
+            await fetch('https://changes-sample.onrender.com/api/auth/logout', { method: 'POST' });
             showAuthPage('login');
         } catch (err) {
             console.error('Logout error:', err);
@@ -5171,14 +5174,16 @@ console.log(constet);
     }
     
     async function checkAuthStatus() {
+         dontshowDashboard();
         try {
-            const response = await fetch('/api/auth/session');
+            const response = await fetch('https://changes-sample.onrender.com/api/auth/session');
             const data = await response.json();
-            
+            dontshowDashboard();
             if (data.authenticated) {
                 showDashboard();
                 loadDashboardStats();
             } else {
+                dontshowDashboard()
                 showAuthPage('login');
             }
         } catch (err) {

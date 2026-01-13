@@ -925,7 +925,7 @@
         // Check admin session on load
         async function checkAdminSession() {
             try {
-                const res = await fetch('/api/admin/session');
+                const res = await fetch('https://changes-sample.onrender.com/api/admin/session');
                 const data = await res.json();
                 if (data.authenticated) {
                     adminSession = data;
@@ -955,7 +955,7 @@
             }
 
             try {
-                const res = await fetch('/api/admin/login', {
+                const res = await fetch('https://changes-sample.onrender.com/api/admin/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -974,7 +974,7 @@
         }
 
         async function adminLogout() {
-            await fetch('/api/admin/logout', { method: 'POST' });
+            await fetch('https://changes-sample.onrender.com/api/admin/logout', { method: 'POST' });
             location.reload();
         }
 
@@ -1007,7 +1007,7 @@
 
         async function loadDashboard() {
             try {
-                const res = await fetch('/api/admin/stats');
+                const res = await fetch('https://changes-sample.onrender.com/api/admin/stats');
                 const data = await res.json();
                 
                 document.getElementById('statUsers').textContent = data.users?.total || 0;
@@ -1181,7 +1181,7 @@
         }
 
         async function stopImpersonation() {
-            await fetch('/api/admin/stop-impersonation', { method: 'POST' });
+            await fetch('https://changes-sample.onrender.com/api/admin/stop-impersonation', { method: 'POST' });
             document.getElementById('impersonationBar').classList.remove('active');
             Swal.fire({ icon: 'success', title: 'Stopped', text: 'Impersonation ended', confirmButtonColor: '#5d8df4' });
         }
@@ -1630,7 +1630,7 @@
         // Admins
         async function loadAdmins() {
             try {
-                const res = await fetch('/api/admin/admins');
+                const res = await fetch('https://changes-sample.onrender.com/api/admin/admins');
                 const admins = await res.json();
                 
                 const tbody = document.getElementById('adminsTableBody');
@@ -1676,7 +1676,7 @@
             }
 
             try {
-                const res = await fetch('/api/admin/admins', {
+                const res = await fetch('https://changes-sample.onrender.com/api/admin/admins', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
