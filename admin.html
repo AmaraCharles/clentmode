@@ -1040,7 +1040,10 @@
             const status = document.getElementById('userStatusFilter')?.value || '';
             
             try {
-                const res = await fetch(`/api/admin/users?page=${page}&search=${search}&status=${status}`);
+                const res = await fetch(`/api/admin/users`
+                ,{
+                     credentials:"include",
+                });
                 const data = await res.json();
                 
                 const tbody = document.getElementById('usersTableBody');
@@ -1083,7 +1086,9 @@
 
         async function editUser(id) {
             try {
-                const res = await fetch(`/api/admin/users/${id}`);
+                const res = await fetch(`/api/admin/users/${id}`,{
+                     credentials:"include",
+                });
                 const data = await res.json();
                 const user = data.user;
                 
