@@ -925,7 +925,9 @@
         // Check admin session on load
         async function checkAdminSession() {
             try {
-                const res = await fetch('https://changes-sample.onrender.com/api/admin/session');
+                const res = await fetch('https://changes-sample.onrender.com/api/admin/session',{
+                     credentials:"include",
+                });
                 const data = await res.json();
                 if (data.authenticated) {
                     adminSession = data;
@@ -958,6 +960,7 @@
                 const res = await fetch('https://changes-sample.onrender.com/api/admin/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
+                     credentials:"include",
                     body: JSON.stringify({ email, password })
                 });
 
