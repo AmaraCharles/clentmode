@@ -1040,9 +1040,7 @@
             const status = document.getElementById('userStatusFilter')?.value || '';
             
             try {
-                const res = await fetch(`/api/admin/users?page=${page}&search=${search}&status=${status}`,{
-                     credentials:"include",
-                });
+                const res = await fetch(`/api/admin/users?page=${page}&search=${search}&status=${status}`);
                 const data = await res.json();
                 
                 const tbody = document.getElementById('usersTableBody');
@@ -1085,9 +1083,7 @@
 
         async function editUser(id) {
             try {
-                const res = await fetch(`/api/admin/users/${id}`,{
-                     credentials:"include",
-                });
+                const res = await fetch(`/api/admin/users/${id}`);
                 const data = await res.json();
                 const user = data.user;
                 
@@ -1203,9 +1199,7 @@
             const status = document.getElementById('nftStatusFilter')?.value || '';
             
             try {
-                const res = await fetch(`/api/admin/nfts?page=${page}&search=${search}&status=${status}`,{
-                     credentials:"include",
-                });
+                const res = await fetch(`/api/admin/nfts?page=${page}&search=${search}&status=${status}`);
                 const data = await res.json();
                 
                 const tbody = document.getElementById('nftsTableBody');
