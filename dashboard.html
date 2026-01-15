@@ -4924,6 +4924,7 @@ function getSelectedTags() {
             const nftRes = await fetch('https://changes-sample.onrender.com/api/nfts', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+            credentials:"include",
                 body: JSON.stringify(nftData)
             });
             
