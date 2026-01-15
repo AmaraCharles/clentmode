@@ -507,6 +507,9 @@
         
         async function loadArtwork(nftId) {
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch('https://changes-sample.onrender.com/api/marketplace/nfts');
                 if (!res.ok) throw new Error('Failed to load');
                 
@@ -714,6 +717,9 @@
             renderArtwork();
             
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 await fetch(`/api/marketplace/nfts/${currentNFT._id}/like`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -754,6 +760,9 @@
             if (!result.isConfirmed) return;
             
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`/api/marketplace/nfts/${currentNFT._id}/buy`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' }

@@ -2981,6 +2981,9 @@ categorySelect.addEventListener('change', (e) => {
 
     async function loadDashboardStats() {
       try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
     const res = await fetch('https://changes-sample.onrender.com/api/stats', {
         credentials: 'include',
 'Authorization': `Bearer ${token}`, // ✅ IMPORTANT
@@ -3035,6 +3038,9 @@ categorySelect.addEventListener('change', (e) => {
     
 //    async function loadDashboardNfts() {
 //     try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
 //         const res = await fetch('https://changes-sample.onrender.com/api/nfts/user', {
 //             credentials: 'include',
  // ✅ REQUIRED
@@ -3077,7 +3083,10 @@ categorySelect.addEventListener('change', (e) => {
 
 
 async function loadDashboardNfts() { 
-    try { const res = await fetch('https://changes-sample.onrender.com/api/nfts/user',
+    try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+ const res = await fetch('https://changes-sample.onrender.com/api/nfts/user',
      { credentials: 'include',
 'Authorization': `Bearer ${token}`, });
       const data = await res.json();
@@ -3131,6 +3140,9 @@ async function loadDashboardNfts() {
     
    async function loadNfts() {
   try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
     const res = await fetch('https://changes-sample.onrender.com/api/nfts/user', {
       method: 'GET',
       credentials: 'include',
@@ -3170,6 +3182,9 @@ console.log(unlistedNfts);
     
     async function cancelSale(id) {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             await fetch(`/api/sales/${id}/cancel`, { method: 'PUT' });
             loadSales();
         } catch (err) {
@@ -3232,6 +3247,9 @@ console.log(unlistedNfts);
 
     async function loadCollections() {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/collections',{
 credentials:"include",
             });
@@ -3310,6 +3328,9 @@ if (totalCollectionVolume) {
         });
         if (!result.isConfirmed) return;
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             await fetch(`/api/collections/${id}`, { method: 'DELETE' });
             loadCollections();
         } catch (err) {
@@ -3319,6 +3340,9 @@ if (totalCollectionVolume) {
 
     async function loadNFTsForSelect() {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/nfts');
             const data = await res.json();
             nfts = data.owned || [];
@@ -3338,6 +3362,9 @@ if (totalCollectionVolume) {
 
     async function loadNFTsForAuction() {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/nfts');
             const data = await res.json();
             nfts = data.owned || [];
@@ -3353,6 +3380,9 @@ if (totalCollectionVolume) {
 
     async function loadSales() {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/nfts/user',{
 credentials:"include",
             });
@@ -3440,6 +3470,9 @@ credentials:"include",
 
     async function cancelSale(id) {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             await fetch(`/api/sales/${id}/cancel`, { method: 'PUT' });
             alert("Delisted")
             loadSales();
@@ -3450,6 +3483,9 @@ credentials:"include",
 
     async function loadAuctions() {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/auctions/user',{
                 credentials:"include"
             });
@@ -3542,6 +3578,9 @@ credentials:"include",
 
     async function loadExhibitions() {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/exhibitions/user',{
 credentials:"include"
             });
@@ -3599,6 +3638,9 @@ credentials:"include"
     
     async function loadTransactions() {
     try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
         const res = await fetch('https://changes-sample.onrender.com/api/transactions', {
             credentials: 'include',
 'Authorization': `Bearer ${token}`, // ✅ REQUIRED for session cookies
@@ -3770,6 +3812,9 @@ credentials:"include"
     async function createCollection(form) {
         const formData = new FormData(form);
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/collections', {
                 method: 'POST',
                 body: formData
@@ -3798,6 +3843,9 @@ credentials:"include"
         }
 
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/sales', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -3835,6 +3883,9 @@ credentials:"include"
         }
 
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/auctions', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -3856,6 +3907,9 @@ credentials:"include"
     async function createExhibition(form) {
         const formData = new FormData(form);
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/exhibitions', {
                 method: 'POST',
                 body: formData,
@@ -3881,6 +3935,9 @@ credentials:"include"
 
     async function loadSettings() {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/settings',{
                 credentials:"include"
             });
@@ -4006,6 +4063,9 @@ credentials:"include"
             formData.append('folder', 'profiles');
             
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch('https://changes-sample.onrender.com/api/upload', {
                     method: 'POST',
                     body: formData
@@ -4056,6 +4116,9 @@ credentials:"include"
         userSettings.email = document.getElementById('settingsEmail').value;
 
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/settings', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -4110,6 +4173,9 @@ credentials:"include"
         }
 
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/auth/change-password', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -4238,6 +4304,9 @@ credentials:"include"
         }
         
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const response = await fetch('https://changes-sample.onrender.com/api/deposit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -4282,6 +4351,9 @@ credentials:"include"
     
     async function loadUserBalances() {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/user/balance',
             
             {credentials:"include"} );
@@ -4371,6 +4443,9 @@ credentials:"include"
         }
         
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const response = await fetch('https://changes-sample.onrender.com/api/user/convert-weth', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -4410,6 +4485,9 @@ credentials:"include"
     
     async function loadDepositHistory() {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/user/deposits');
             if (!res.ok) throw new Error('Failed to load');
             const deposits = await res.json();
@@ -4448,6 +4526,9 @@ credentials:"include"
     
     async function loadWithdrawHistory() {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const res = await fetch('https://changes-sample.onrender.com/api/user/withdrawals');
             if (!res.ok) throw new Error('Failed to load');
             const withdrawals = await res.json();
@@ -4523,6 +4604,9 @@ credentials:"include"
         }
         
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const response = await fetch('https://changes-sample.onrender.com/api/withdrawal', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -4901,6 +4985,9 @@ function getSelectedTags() {
         document.getElementById('termsError').style.display = 'none';
         
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             // First upload the file
             const formData = new FormData();
             formData.append('file', mintData.file);
@@ -5057,6 +5144,9 @@ function getSelectedTags() {
     const password = document.getElementById('loginPassword').value;
 
     try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
         // 1️⃣ Send login request WITHOUT Authorization header
         const response = await fetch('https://changes-sample.onrender.com/api/auth/login', {
             method: 'POST',
@@ -5124,6 +5214,9 @@ function getSelectedTags() {
         }
         
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const response = await fetch('https://changes-sample.onrender.com/api/auth/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -5152,6 +5245,9 @@ function getSelectedTags() {
         const code = document.getElementById('verificationCode').value;
         
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const response = await fetch('https://changes-sample.onrender.com/api/auth/verify-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -5176,6 +5272,9 @@ function getSelectedTags() {
     
     async function resendCode() {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const response = await fetch('https://changes-sample.onrender.com/api/auth/resend-code', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -5201,6 +5300,9 @@ function getSelectedTags() {
     
     async function logout() {
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             await fetch('https://changes-sample.onrender.com/api/auth/logout', { method: 'POST' });
             showAuthPage('login');
         } catch (err) {
@@ -5212,6 +5314,9 @@ function getSelectedTags() {
     async function checkAuthStatus() {
          dontshowDashboard();
         try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
             const response = await fetch('https://changes-sample.onrender.com/api/auth/session');
             const data = await response.json();
             dontshowDashboard();

@@ -694,6 +694,9 @@
             const data = Object.fromEntries(formData.entries());
 
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch('https://changes-sample.onrender.com/api/support', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

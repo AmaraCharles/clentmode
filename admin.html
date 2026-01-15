@@ -925,6 +925,9 @@
         // Check admin session on load
         async function checkAdminSession() {
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch('https://changes-sample.onrender.com/api/admin/session',{
                      credentials:"include",
                 });
@@ -957,6 +960,9 @@
             }
 
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch('https://changes-sample.onrender.com/api/admin/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1010,6 +1016,9 @@
 
         async function loadDashboard() {
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch('https://changes-sample.onrender.com/api/admin/stats',{
                      credentials:"include",
                 });
@@ -1040,6 +1049,9 @@
             const status = document.getElementById('userStatusFilter')?.value || '';
             
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/users?page=${page}&search=${search}&status=${status}`
                 ,{
                      credentials:"include",
@@ -1086,6 +1098,9 @@
 
         async function editUser(id) {
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/users/${id}`,{
                      credentials:"include",
                 });
@@ -1114,6 +1129,9 @@
             };
 
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/users/${id}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
@@ -1146,6 +1164,9 @@
 
             if (result.isConfirmed) {
                 try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                     const res = await fetch(`https://changes-sample.onrender.com/api/admin/users/${id}`, { method: 'DELETE', credentials:"include", });
                     if (res.ok) {
                         Swal.fire({ icon: 'success', title: 'Deleted', text: 'User deleted successfully', confirmButtonColor: '#5d8df4' });
@@ -1172,6 +1193,9 @@
 
             if (result.isConfirmed) {
                 try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                     const res = await fetch(`https://changes-sample.onrender.com/api/admin/users/${id}/impersonate`, { method: 'POST' , credentials:"include",});
                     if (res.ok) {
                         Swal.fire({
@@ -1204,6 +1228,9 @@
             const status = document.getElementById('nftStatusFilter')?.value || '';
             
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/nfts?page=${page}&search=${search}&status=${status}`,{
 
                     credentials:"include",
@@ -1248,6 +1275,9 @@
 
         async function editNft(id) {
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/nfts/${id}`,{
                      credentials:"include",
                 });
@@ -1279,6 +1309,9 @@
             };
 
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/nfts/${id}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
@@ -1308,6 +1341,9 @@
 
             if (result.isConfirmed) {
                 try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                     const res = await fetch(`https://changes-sample.onrender.com/api/admin/nfts/${id}`, { method: 'DELETE', credentials:"include", });
                     if (res.ok) {
                         Swal.fire({ icon: 'success', title: 'Deleted', confirmButtonColor: '#5d8df4' });
@@ -1332,6 +1368,9 @@
             const price = parseFloat(document.getElementById('buyPrice').value) || 0;
 
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/nfts/${id}/buy`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1355,6 +1394,9 @@
             const search = document.getElementById('collectionSearch')?.value || '';
             
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/collections?page=${page}&search=${search}`,{
                      credentials:"include",
                 });
@@ -1393,6 +1435,9 @@
 
         async function editCollection(id) {
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/collections?page=1`,{
                      credentials:"include",
                 });
@@ -1422,6 +1467,9 @@
             };
 
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/collections/${id}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
@@ -1451,6 +1499,9 @@
 
             if (result.isConfirmed) {
                 try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                     await fetch(`https://changes-sample.onrender.com/api/admin/collections/${id}`, { method: 'DELETE' , credentials:"include",});
                     Swal.fire({ icon: 'success', title: 'Deleted', confirmButtonColor: '#5d8df4' });
                     loadCollections(currentPage.collections);
@@ -1466,6 +1517,9 @@
             const status = document.getElementById('depositStatusFilter')?.value || 'pending';
             
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/financial-requests?page=${page}&type=deposit&status=${status}`,{
                      credentials:"include",
                 });
@@ -1503,6 +1557,9 @@
             const status = document.getElementById('withdrawalStatusFilter')?.value || 'pending';
             
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/financial-requests?page=${page}&type=withdrawal&status=${status}`,{
                      credentials:"include",
                 });
@@ -1550,6 +1607,9 @@
             const adminNote = document.getElementById('requestNoteText').value;
 
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/financial-requests/${id}/${action}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1578,6 +1638,9 @@
             const type = document.getElementById('txTypeFilter')?.value || '';
             
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/transactions?page=${page}&type=${type}`,{
                      credentials:"include",
                 });
@@ -1607,6 +1670,9 @@
             const status = document.getElementById('saleStatusFilter')?.value || '';
             
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/sales?page=${page}&status=${status}`,{
                      credentials:"include",
                 });
@@ -1635,6 +1701,9 @@
             const status = document.getElementById('auctionStatusFilter')?.value || '';
             
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/auctions?page=${page}&status=${status}`,{
                      credentials:"include",
                 });
@@ -1666,6 +1735,9 @@
         // Admins
         async function loadAdmins() {
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch('https://changes-sample.onrender.com/api/admin/admins',{
                      credentials:"include",
                 });
@@ -1714,6 +1786,9 @@
             }
 
             try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                 const res = await fetch('https://changes-sample.onrender.com/api/admin/admins', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1745,6 +1820,9 @@
 
             if (result.isConfirmed) {
                 try {
+const token = localStorage.getItem('token'); 
+    if (!token) throw new Error('No token found');
+
                     await fetch(`https://changes-sample.onrender.com/api/admin/admins/${id}`, { method: 'DELETE', credentials:"include", });
                     Swal.fire({ icon: 'success', title: 'Deleted', confirmButtonColor: '#5d8df4' });
                     loadAdmins();
