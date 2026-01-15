@@ -702,7 +702,7 @@ const token = localStorage.getItem('token');
                      headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+     },
                     body: JSON.stringify(data)
                 });
 

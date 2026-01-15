@@ -1975,8 +1975,7 @@ const token = localStorage.getItem('token');
                      headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
-                    body: JSON.stringify({ unlike: isLiked })
+      },     body: JSON.stringify({ unlike: isLiked })
                 });
             } catch (err) {
                 console.error('Like sync error:', err);
