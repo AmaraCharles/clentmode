@@ -1204,7 +1204,10 @@
             const status = document.getElementById('nftStatusFilter')?.value || '';
             
             try {
-                const res = await fetch(`https://changes-sample.onrender.com/api/admin/nfts?page=${page}&search=${search}&status=${status}`);
+                const res = await fetch(`https://changes-sample.onrender.com/api/admin/nfts?page=${page}&search=${search}&status=${status}`,{
+
+                    credentials:"include",
+                });
                 const data = await res.json();
                 
                 const tbody = document.getElementById('nftsTableBody');
