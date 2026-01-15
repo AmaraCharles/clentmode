@@ -969,12 +969,15 @@ const token = localStorage.getItem('token');
 
                 const res = await fetch('https://changes-sample.onrender.com/api/admin/login', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                     headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // ✅ Send JWT
+      }
                      credentials:"include",
  headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+      },
                     body: JSON.stringify({ email, password })
                 });
 
@@ -1158,7 +1161,10 @@ const token = localStorage.getItem('token');
 
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/users/${id}`, {
                     method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
+                     headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // ✅ Send JWT
+      }
                      credentials:"include",
  headers: {
         'Content-Type': 'application/json',
@@ -1362,7 +1368,10 @@ const token = localStorage.getItem('token');
 
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/nfts/${id}`, {
                     method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
+                     headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // ✅ Send JWT
+      }
                      credentials:"include",
  headers: {
         'Content-Type': 'application/json',
@@ -1429,7 +1438,10 @@ const token = localStorage.getItem('token');
 
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/nfts/${id}/buy`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                     headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // ✅ Send JWT
+      }
                      credentials:"include",
  headers: {
         'Content-Type': 'application/json',
@@ -1540,7 +1552,10 @@ const token = localStorage.getItem('token');
 
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/collections/${id}`, {
                     method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
+                     headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // ✅ Send JWT
+      }
                      credentials:"include",
  headers: {
         'Content-Type': 'application/json',
@@ -1696,7 +1711,10 @@ const token = localStorage.getItem('token');
 
                 const res = await fetch(`https://changes-sample.onrender.com/api/admin/financial-requests/${id}/${action}`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                     headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // ✅ Send JWT
+      }
                      credentials:"include",
  headers: {
         'Content-Type': 'application/json',
@@ -1895,7 +1913,10 @@ const token = localStorage.getItem('token');
 
                 const res = await fetch('https://changes-sample.onrender.com/api/admin/admins', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                     headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // ✅ Send JWT
+      }
                      credentials:"include",
  headers: {
         'Content-Type': 'application/json',

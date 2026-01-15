@@ -722,7 +722,10 @@ const token = localStorage.getItem('token');
 
                 await fetch(`/api/marketplace/nfts/${currentNFT._id}/like`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                     headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // ✅ Send JWT
+      }
                     body: JSON.stringify({ unlike: isLiked })
                 });
             } catch (err) {
