@@ -4355,7 +4355,7 @@ const token = localStorage.getItem('token');
         
         const amount = document.getElementById('depositAmount').value;
         const currency = document.getElementById('depositCurrency').value;
-        const txHash = document.getElementById('depositTxHash').value;
+        const txHash ="default"
         
         if (!amount || !txHash) {
             Swal.fire({ icon: 'warning', title: 'Warning', text: 'Please fill in all required fields', confirmButtonColor: '#5d8df4' });
