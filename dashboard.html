@@ -2983,6 +2983,7 @@ categorySelect.addEventListener('change', (e) => {
       try {
 const token = localStorage.getItem('token'); 
     if (!token) throw new Error('No token found');
+console.log(token);
 
     const res = await fetch('https://changes-sample.onrender.com/api/stats', {
   method: 'GET',
