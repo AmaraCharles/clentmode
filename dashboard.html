@@ -3886,7 +3886,7 @@ const token = localStorage.getItem('token');
                  headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+      },
                 body: JSON.stringify({ nftId, price, currency })
             });
             if (res.ok) {
@@ -3929,7 +3929,7 @@ const token = localStorage.getItem('token');
                  headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+      },
                 body: JSON.stringify(data)
             });
             if (res.ok) {
@@ -4173,7 +4173,7 @@ const token = localStorage.getItem('token');
                  headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+      },
                 credentials:"include",
  headers: {
         'Content-Type': 'application/json',
@@ -4237,7 +4237,7 @@ const token = localStorage.getItem('token');
                  headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+      },
                 body: JSON.stringify({ currentPassword, newPassword })
             });
 
@@ -4371,7 +4371,7 @@ const token = localStorage.getItem('token');
                  headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+      },
                 body: JSON.stringify({
                     amount: parseFloat(amount),
                     currency: currency,
@@ -4521,7 +4521,7 @@ const token = localStorage.getItem('token');
                  headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+      },
                 body: JSON.stringify({ amount })
             });
             
@@ -4685,12 +4685,8 @@ const token = localStorage.getItem('token');
                  headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
-                credentials:"include",
- headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` // ✅ Send JWT
       },
+                credentials:"include",
                 body: JSON.stringify({
                     type: 'withdrawal',
                     description: `Withdrawal request to ${wallet.substring(0, 10)}... on ${network}`,
@@ -5127,7 +5123,7 @@ const token = localStorage.getItem('token');
                      headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+      },
                     body: JSON.stringify(saleData)
                 });
             }
@@ -5138,12 +5134,8 @@ const token = localStorage.getItem('token');
                  headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
-                credentials:"include",
- headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` // ✅ Send JWT
       },
+               
                 body: JSON.stringify({
                     type: 'mint',
                     description: `Minted ${mintData.name}`,
@@ -5246,7 +5238,7 @@ const token = localStorage.getItem('token');
              headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+      },
             
             body: JSON.stringify({ email, password })
         });
@@ -5319,7 +5311,7 @@ const token = localStorage.getItem('token');
                  headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+      },
                 body: JSON.stringify({ email, password, username })
             });
             
@@ -5353,7 +5345,7 @@ const token = localStorage.getItem('token');
                  headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+      },
                 body: JSON.stringify({ email: pendingVerificationEmail, code })
             });
             
@@ -5383,7 +5375,7 @@ const token = localStorage.getItem('token');
                  headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
+      },
                 body: JSON.stringify({ email: pendingVerificationEmail })
             });
             
