@@ -3202,7 +3202,7 @@ console.log(unlistedNfts);
 const token = localStorage.getItem('token'); 
     if (!token) throw new Error('No token found');
 
-            await fetch(`/api/sales/${id}/cancel`, { method: 'PUT' });
+            await fetch(`https://changes-sample.onrender.com/api/sales/${id}/cancel`, { method: 'PUT' });
             loadSales();
         } catch (err) {
             Swal.fire({ icon: 'error', title: 'Error', text: 'Failed to cancel sale', confirmButtonColor: '#5d8df4' });

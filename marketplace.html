@@ -1898,7 +1898,7 @@ const token = localStorage.getItem('token');
 const token = localStorage.getItem('token'); 
     if (!token) throw new Error('No token found');
 
-                const res = await fetch(`/api/marketplace/search?q=${encodeURIComponent(query)}`);
+                const res = await fetch(`https://changes-sample.onrender.com/api/marketplace/search?q=${encodeURIComponent(query)}`);
                 if (!res.ok) throw new Error('Search failed');
                 
                 const results = await res.json();
@@ -1971,7 +1971,7 @@ const token = localStorage.getItem('token');
 const token = localStorage.getItem('token'); 
     if (!token) throw new Error('No token found');
 
-                await fetch(`/api/marketplace/nfts/${nftId}/like`, {
+                await fetch(`https://changes-sample.onrender.com/api/marketplace/nfts/${nftId}/like`, {
                     method: 'POST',
                      headers: {
         'Content-Type': 'application/json',
@@ -2058,7 +2058,7 @@ const token = localStorage.getItem('token');
 const token = localStorage.getItem('token'); 
     if (!token) throw new Error('No token found');
 
-                await fetch(`/api/marketplace/nfts/${nftId}/view`, { method: 'POST' });
+                await fetch(`https://changes-sample.onrender.com/api/marketplace/nfts/${nftId}/view`, { method: 'POST' });
             } catch (err) {
                 console.error('View increment error:', err);
             }
