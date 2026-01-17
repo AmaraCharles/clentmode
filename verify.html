@@ -51,7 +51,7 @@
         const code = document.getElementById('verificationCode').value;
         
         try {
-const token = localStorage.getItem('token'); 
+
 var pendingVerificationEmail=localStorage.getItem("pendingVerificationEmail")
     if (!token) throw new Error('No token found');
 
@@ -59,7 +59,7 @@ var pendingVerificationEmail=localStorage.getItem("pendingVerificationEmail")
                 method: 'POST',
                  headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` // ✅ Send JWT
+        // ✅ Send JWT
       },
                 body: JSON.stringify({ email: pendingVerificationEmail, code })
             });
