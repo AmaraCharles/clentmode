@@ -3861,31 +3861,51 @@ const token = localStorage.getItem('token');
     }
 
     async function createCollection(form) {
-        const formData = new FormData(form);
-        try {
-const token = localStorage.getItem('token'); 
+  const formData = new FormData(form);
+
+  try {
+    const token = localStorage.getItem('token');
     if (!token) throw new Error('No token found');
 
-            const res = await fetch('https://changes-sample.onrender.com/api/collections', {
-                method: 'POST',
-                body: formData,
- headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }
-            });
-            if (res.ok) {
-                closeCreateModal();
-                loadCollections();
-                Swal.fire({ icon: 'success', title: 'Success', text: 'Collection created successfully!', confirmButtonColor: '#5d8df4' });
-            } else {
-                const err = await res.json();
-                Swal.fire({ icon: 'error', title: 'Error', text: err.message || 'Failed to create collection', confirmButtonColor: '#5d8df4' });
-            }
-        } catch (err) {
-            Swal.fire({ icon: 'error', title: 'Error', text: 'Failed to create collection', confirmButtonColor: '#5d8df4' });
+    const res = await fetch(
+      'https://changes-sample.onrender.com/api/collections',
+      {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${token}` // ✅ ONLY auth header
         }
+      }
+    );
+
+    if (res.ok) {
+      closeCreateModal();
+      loadCollections();
+      Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Collection created successfully!',
+        confirmButtonColor: '#5d8df4'
+      });
+    } else {
+      const err = await res.json();
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: err.message || 'Failed to create collection',
+        confirmButtonColor: '#5d8df4'
+      });
     }
+  } catch (err) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: err.message || 'Failed to create collection',
+      confirmButtonColor: '#5d8df4'
+    });
+  }
+}
+
 
     async function listNFTForSale(form) {
         const nftId = form.querySelector('[name="nftId"]').value;
