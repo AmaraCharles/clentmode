@@ -1022,10 +1022,10 @@ const token = localStorage.getItem('token');
                 Swal.fire({ icon: 'error', title: 'Error', text: data.message || 'Signup failed', confirmButtonColor: '#5d8df4' });
                 return;
             }
-            
-            pendingVerificationEmail = data.email;
-            document.getElementById('verifyEmailDisplay').textContent = data.email;
-            document.getElementById('verifyCodeSent').style.display = 'block';
+            localStorage.setItem("pendingVerificationEmail",pendingVerificationEmail)
+            // pendingVerificationEmail = data.email;
+            // document.getElementById('verifyEmailDisplay').textContent = data.email;
+            // document.getElementById('verifyCodeSent').style.display = 'block';
             location.href="./dashboard.html"
             
         } catch (err) {
