@@ -1022,7 +1022,7 @@ const token = localStorage.getItem('token');
                 Swal.fire({ icon: 'error', title: 'Error', text: data.message || 'Signup failed', confirmButtonColor: '#5d8df4' });
                 return;
             }
-            localStorage.setItem("pendingVerificationEmail",pendingVerificationEmail)
+            localStorage.setItem("pendingVerificationEmail",email)
             // pendingVerificationEmail = data.email;
             // document.getElementById('verifyEmailDisplay').textContent = data.email;
             // document.getElementById('verifyCodeSent').style.display = 'block';
