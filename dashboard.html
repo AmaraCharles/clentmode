@@ -912,7 +912,7 @@
 
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-        <h2 class="h4 fw-bold text-primary mb-0"><i class="bi bi-compass me-2"></i><a href="./index.html"></a>Ethergalleries</h2>
+        <h2 class="h4 fw-bold text-primary mb-0"><i class="bi bi-compass me-2"></i><a href="./index.html">Ethergalleries</a>Ethergalleries</h2>
     </div>
     <div class="sidebar-nav">
         <div class="nav-section-label">Navigation</div>
@@ -927,6 +927,10 @@
         <a href="#" class="sidebar-link" onclick="showPage('nfts')">
             <i class="bi bi-gem"></i>
             <span>My NFTs</span>
+        </a>
+        <a href="./index.html" class="sidebar-link" >
+            <i class="bi bi-gem"></i>
+            <span>Marketplace</span>
         </a>
         <a href="#" class="sidebar-link" onclick="showPage('transactions')">
             <i class="bi bi-card-list"></i>
@@ -5443,14 +5447,15 @@ const token = localStorage.getItem('token');
     
     async function logout() {
         try {
-const token = localStorage.getItem('token'); 
-    if (!token) throw new Error('No token found');
+localStorage.removeItem('token'); 
+location.href="./login.html"
+    // if (!token) throw new Error('No token found');
 
-            await fetch('https://changes-sample.onrender.com/api/auth/logout', { method: 'POST' });
-            showAuthPage('login');
-        } catch (err) {
-            console.error('Logout error:', err);
-            showAuthPage('login');
+        //     await fetch('https://changes-sample.onrender.com/api/auth/logout', { method: 'POST' });
+        //     showAuthPage('login');
+        // } catch (err) {
+        //     console.error('Logout error:', err);
+        //     showAuthPage('login');
         }
     }
     
