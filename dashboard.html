@@ -916,7 +916,7 @@
     </div>
     <div class="sidebar-nav">
         <div class="nav-section-label">Navigation</div>
-        <a href="#" class="sidebar-link active" onclick="showPage('dashboard')">
+        <a href="#" class="sidebar-link ctive" onclick="showPage('dashboard')">
             <i class="bi bi-grid-fill"></i>
             <span>Dashboard</span>
         </a>
@@ -1328,7 +1328,7 @@
                 </div>
             </div>
 
-            <div class="mb-4">
+            <!-- <div class="mb-4">
                 <button class="btn btn-light w-100 py-2 border rounded-3 d-flex align-items-center justify-content-center gap-2" onclick="toggleViewOptions()">
                     <i class="bi bi-text-left"></i>
                     View Options
@@ -1352,7 +1352,7 @@
                         Create
                     </button>
                 </div>
-            </div>
+            </div> -->
 
             <div class="row g-3" id="collectionsGrid">
                 <div class="col-12 text-center py-5">
@@ -1397,7 +1397,7 @@
                 <div class="d-flex gap-2 mb-4 overflow-auto pb-2" id="transactionTabs">
                     <button class="btn btn-light btn-sm border rounded-3 px-3 active" onclick="filterTransactions('all', this)">All</button>
                     <button class="btn btn-light btn-sm border rounded-3 px-3" onclick="filterTransactions('buy', this)">Buys</button>
-                    <button class="btn btn-light btn-sm border rounded-3 px-3" onclick="filterTransactions('sold', this)">Sales</button>
+                    <button class="btn btn-light btn-sm border rounded-3 px-3" onclick="filterTransactions('sale', this)">Sales</button>
                     <button class="btn btn-light btn-sm border rounded-3 px-3" onclick="filterTransactions('conversion', this)">Conversions</button>
                     <button class="btn btn-light btn-sm border rounded-3 px-3" onclick="filterTransactions('other', this)">Other</button>
                 </div>
@@ -3144,7 +3144,7 @@ const token = localStorage.getItem('token');
                 <div class="vx-card h-100 position-relative">
                     ${nft.imageUrl ? `<img src="${nft.imageUrl}" class="w-100 rounded-3 mb-3" style="height: 150px; object-fit: cover;">` : '<div class="w-100 rounded-3 mb-3 bg-light d-flex align-items-center justify-content-center" style="height: 150px;"><i class="bi bi-gem text-muted fs-1"></i></div>'}
                     <h6 class="fw-bold mb-1 text-truncate">${nft.name}</h6>
-                    <p class="text-muted small mb-2">${nft.collection?.name || 'No Collection'}</p>
+                    <p class="text-muted small mb-2">${nft.category?.name }</p>
                     ${nft.status === 'listed' ? `<span class="badge bg-success">${nft.price} ${nft.currency || 'ETH'}</span>` : `<button class="btn btn-sm btn-outline-primary w-100" onclick="openQuickListModal('${nft._id}', '${nft.name.replace(/'/g, "\\'")}')">List for Sale</button>`}
                 </div>
             </div>
@@ -3246,12 +3246,10 @@ const token = localStorage.getItem('token');
                            <button class="btn btn-sm btn-outline-danger" onclick="cancelSale('${nft._id}')">Delist</button>
                         </div>` : `<button class="btn btn-sm btn-outline-primary" onclick="openQuickListModal('${nft._id}', '${nft.name.replace(/'/g, "\\'")}')">List for Sale</button>`}
                         <div class="d-flex gap-1">
-                            <button class="btn btn-sm btn-outline-secondary" onclick="viewNftDetails('${nft._id}')" title="View"><i class="bi bi-eye"></i></button>
+                           
                         </div>
 
-                         <div class="d-flex gap-1">
-                           <button class="btn btn-sm btn-outline-danger" onclick="cancelSale('${nft._id}')">Cancel</button>
-                        </div>
+                         
                     </div>
                 </div>
             </div>
@@ -4519,7 +4517,7 @@ const token = localStorage.getItem('token');
     
     function updateConvertSummary() {
         const amount = parseFloat(document.getElementById('convertAmount').value) || 0;
-        const fee = amount * 0.15;
+        const fee = amount * 0.095;
         const receive = amount; // Net ETH after 9.5% fee deduction
         
         document.getElementById('convertSummaryAmount').textContent = amount.toFixed(4) + ' WETH';
