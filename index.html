@@ -1841,34 +1841,55 @@
         }
         
         function renderExhibitions() {
-            const grid = document.getElementById('exhibitionsGrid');
-            
-            if (allExhibitions.length === 0) {
-                grid.innerHTML = '<div class="col-12 text-center text-muted py-4">No exhibitions available</div>';
-                return;
-            }
-            
-            grid.innerHTML = allExhibitions.slice(0, 3).map(exhibition => `
-                <div class="col-md-4">
-                    <div class="vx-exhibition-card">
-                        <img src="${exhibition.imageUrl || 'https://via.placeholder.com/400x200?text=Exhibition'}" 
-                             alt="${exhibition.name}" class="vx-exhibition-image">
-                        <div class="vx-exhibition-content">
-                            <span class="badge bg-primary mb-2">${exhibition.type || 'Virtual'}</span>
-                            <h5 class="fw-bold">${exhibition.name}</h5>
-                            <p class="text-muted small mb-3">${exhibition.description || 'No description'}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">
-                                    <i class="bi bi-calendar me-1"></i>
-                                    ${new Date(exhibition.startDate).toLocaleDateString()}
-                                </small>
-                                <button class="btn btn-sm btn-outline-primary rounded-pill" data-testid="button-view-exhibition-${exhibition._id}">View</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
+  const grid = document.getElementById('exhibitionsGrid');
+
+  if (allExhibitions.length === 0) {
+    grid.innerHTML =
+      '<div class="col-12 text-center text-muted py-4">No exhibitions available</div>';
+    return;
+  }
+
+  grid.innerHTML = allExhibitions.slice(0, 3).map(exhibition => `
+    <div class="col-md-4">
+      <div class="vx-exhibition-card">
+        <img 
+          src="${exhibition.thumbnailUrl || 'https://via.placeholder.com/400x200?text=Exhibition'}"
+          alt="${exhibition.title}"
+          class="vx-exhibition-image"
+        />
+        <div class="vx-exhibition-content">
+          <span class="badge bg-primary mb-2">${exhibition.type || 'Virtual'}</span>
+          <h5 class="fw-bold">${exhibition.title}</h5>
+          <p class="text-muted small mb-3">
+            ${exhibition.description || 'No description'}
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+              <i class="bi bi-calendar me-1"></i>
+              ${new Date(exhibition.startDate).toLocaleDateString()}
+            </small>
+            <button 
+              class="btn btn-sm btn-outline-primary rounded-pill view-exhibition-btn"
+              data-id="${exhibition._id}">
+              View
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+document
+  .getElementById('exhibitionsGrid')
+  .addEventListener('click', (e) => {
+    const btn = e.target.closest('.view-exhibition-btn');
+    if (!btn) return;
+
+    const exhibitionId = btn.dataset.id;
+    openExhibitionView(exhibitionId);
+  });
+
         
         function getTimeLeft(endTime) {
             const now = new Date();
