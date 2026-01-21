@@ -574,7 +574,7 @@ const token = localStorage.getItem('token');
         
       async  function renderArtwork() {
 
-            const username = await getUsernameFromEmail(currentNFT.creator);
+            const username = await getUsernameFromEmail(currentNFT.owner);
 
             const isLiked = likedNFTs.includes(currentNFT._id);
             const creatorInitial = (username || 'User')[0].toUpperCase();
