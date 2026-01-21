@@ -469,8 +469,8 @@
         
         async function loadArtistProfile() {
             try {
-const token = localStorage.getItem('token'); 
-    if (!token) throw new Error('No token found');
+// const token = localStorage.getItem('token'); 
+//     if (!token) throw new Error('No token found');
 
                 const res = await fetch('https://changes-sample.onrender.com/api/marketplace/nfts');
                 if (!res.ok) throw new Error('Failed to load');
