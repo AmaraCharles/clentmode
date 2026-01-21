@@ -3379,7 +3379,7 @@ const token = localStorage.getItem('token');
             const data = await res.json();
             nfts = data.owned || [];
             // Only show unlisted NFTs in the list dropdown
-            const unlistedForSelect = nfts.filter(n => n.status !== 'listed');
+            const unlistedForSelect = nfts.filter(n => n.status !== 'listed'|| 'sold');
             const select = document.getElementById('listNftSelect');
             if (select) {
                 select.innerHTML = '<option value="">Choose an NFT</option>' + 
