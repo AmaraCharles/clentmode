@@ -539,11 +539,46 @@ const token = localStorage.getItem('token');
                 `;
             }
         }
+
+        async function getUsernameFromEmail(email) {
+  try {
+    if (!email) throw new Error("Email is required");
+
+    const encodedEmail = encodeURIComponent(email.trim().toLowerCase());
+
+    const res = await fetch(
+      `https://strategylive-server-zqqa.onrender.com/api/user/by-email/${encodedEmail}`,
+      {
+        method: "GET",
+        credentials: "include", // keep if you use cookies/session
+        headers: {
+          "Accept": "application/json"
+        }
+      }
+    );
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.message || "Failed to fetch username");
+    }
+
+    const data = await res.json();
+
+    return data.username; // ✅ what you need
+  } catch (err) {
+    console.error("getUsernameFromEmail error:", err.message);
+    return null;
+  }
+}
+
         
-        function renderArtwork() {
+      async  function renderArtwork() {
+
+            const username = await getUsernameFromEmail(currentNFT.creator);
+
             const isLiked = likedNFTs.includes(currentNFT._id);
-            const creatorInitial = (currentNFT.creator || 'U')[0].toUpperCase();
-            const creatorSlug = encodeURIComponent(currentNFT.creator || 'unknown');
+            const creatorInitial = (username || 'User')[0].toUpperCase();
+            const creatorSlug = encodeURIComponent(username || 'unknown');
             
             let buyButtonHTML = '';
             if (currentNFT.status === 'listed') {
