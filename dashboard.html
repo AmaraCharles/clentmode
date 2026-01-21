@@ -4589,7 +4589,7 @@ const token = localStorage.getItem('token');
         const amount = parseFloat(document.getElementById('convertAmount').value);
         const fee = amount * 0.15;
         
-        if (!amount || amount <= 0) {
+        if (!amount || amount <= 5) {
             Swal.fire({ icon: 'warning', title: 'Warning', text: 'Please enter a valid amount', confirmButtonColor: '#5d8df4' });
             return;
         }
