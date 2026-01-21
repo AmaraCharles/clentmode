@@ -3752,7 +3752,7 @@ const token = localStorage.getItem('token');
     function getFilteredTransactions(type) {
         if (type === 'all') return transactions;
         return transactions.filter(t => {
-            if (type === 'buy') return t.type === 'purchase' || t.type === 'buy';
+            if (type === 'purchase') return t.type === 'purchase' || t.type === 'buy';
             if (type === 'sale') return t.type === 'sale';
             if (type === 'conversion') return t.type === 'conversion';
             return t.type !== 'sale' && t.type !== 'purchase' && t.type !== 'buy' && t.type !== 'conversion';
