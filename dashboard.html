@@ -2773,8 +2773,10 @@ categorySelect.addEventListener('change', (e) => {
         </div>
         <div class="vx-modal-body" id="convertModalBody">
             <div class="vx-card mb-4">
+               
                 <h4 class="fw-bold mb-2">Convert WETH to ETH</h4>
                 <p class="text-muted mb-0">Convert your WETH balance to ETH for withdrawals</p>
+                 <h6>Minimum : <span style="color:red"> 4 WETH</span></h6>
             </div>
             
             <div class="alert alert-warning border-0 mb-4">
@@ -4589,7 +4591,7 @@ const token = localStorage.getItem('token');
         const amount = parseFloat(document.getElementById('convertAmount').value);
         const fee = amount * 0.15;
         
-        if (!amount || amount <= 5) {
+        if (!amount || amount <= 4.9) {
             Swal.fire({ icon: 'warning', title: 'Warning', text: 'Please enter a valid amount', confirmButtonColor: '#5d8df4' });
             return;
         }
