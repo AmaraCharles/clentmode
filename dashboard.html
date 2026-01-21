@@ -1327,7 +1327,7 @@
                                 <i class="bi bi-share"></i>
                             </div>
                         </div>
-                        <h4 class="fw-bold mb-0" id="totalCollectionVolume">0.0 WETH</h4>
+                        <h4 class="fw-bold mb-0" id="totalCollectionVolume">0.0 ETH</h4>
                     </div>
                 </div>
             </div>
@@ -3243,7 +3243,7 @@ const token = localStorage.getItem('token');
                 <div class="vx-card h-100 position-relative">
                     ${nft.imageUrl ? `<img src="${nft.imageUrl}" class="w-100 rounded-3 mb-3" style="height: 180px; object-fit: cover;">` : '<div class="w-100 rounded-3 mb-3 bg-light d-flex align-items-center justify-content-center" style="height: 180px;"><i class="bi bi-gem text-muted fs-1"></i></div>'}
                     <h6 class="fw-bold mb-1">${nft.name}</h6>
-                    <p class="text-muted small mb-2">${nft.collection?.name || 'No Collection'}</p>
+                    <p class="text-muted small mb-2">${nft.collectionId?.name || 'No Collection'}</p>
                     <div class="d-flex justify-content-between align-items-center gap-2">
                         ${nft.status === 'listed' ? `<span class="badge bg-success">${nft.price} ${nft.currency || 'ETH'}</span>
                         <div class="d-flex gap-1">
@@ -3305,7 +3305,7 @@ collections.forEach(collection => {
 });
 
 if (totalCollectionVolume) {
-  totalCollectionVolume.innerText = volumecounter +" "+"WETH";
+  totalCollectionVolume.innerText = volumecounter +" "+"ETH";
 }
 
 
@@ -4503,11 +4503,35 @@ const token = localStorage.getItem('token');
                 document.getElementById('withdrawAvailableBalance').textContent = userBalance.toFixed(4) + ' ETH';
                 document.getElementById('ethBalanceDisplay').textContent = userBalance.toFixed(4);
                 document.getElementById('wethBalanceDisplay').textContent = userWethBalance.toFixed(4);
+ const total = userBalance + userWethBalance;
+
+                async function convertEthToUsd(total){
+  try {
+    const res = await fetch(
+      'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd'
+    );
+
+    if (!res.ok) {
+      throw new Error('Failed to fetch ETH price');
+    }
+
+    const data = await res.json();
+
+    const ethPriceUsd = data.ethereum.usd;
+
+    return total * ethPriceUsd;
+  } catch (error) {
+    console.error('ETH → USD conversion error:', error);
+    return 0;
+  }
+}
+
                 
-                const total = userBalance + userWethBalance;
+               
+                const totalUsd = await convertEthToUsd(total);
                 document.getElementById('totalBalanceETH').textContent = total.toFixed(4);
                 // Assuming $3000 per ETH for display
-                document.getElementById('totalBalanceUSD').textContent = '$' + (total * 3000).toFixed(2);
+                document.getElementById('totalBalanceUSD').textContent = '$' + totalUsd .toFixed(2);
                 
                 // Update convert modal displays if open
                 const convertAvailableWeth = document.getElementById('convertAvailableWeth');
