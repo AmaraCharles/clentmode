@@ -567,7 +567,7 @@ const params = new URLSearchParams(window.location.search);
     if (!res.ok) throw new Error("Failed to load avatar");
 
     const data = await res.json();
-    return data.profileImage; // ✅ STRING ONLY
+    return data.bio; // ✅ STRING ONLY
   } catch (err) {
     console.error("Avatar load error:", err);
     return null;
@@ -625,8 +625,8 @@ const params = new URLSearchParams(window.location.search);
 
           <h1 class="vx-profile-name">${artistName}</h1>
 <div class="vx-profile-stat">
-              <div class="vx-profile-stat-value">${bio}</div>
-              <div class="vx-profile-stat-label">Bio</div>
+              <div class="" style="display:flex;flex-direction:row;justify-content:start">${bio}</div>
+             
             </div>
           <div class="vx-profile-stats">
             <div class="vx-profile-stat">
