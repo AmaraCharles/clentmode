@@ -1235,42 +1235,69 @@ const token = localStorage.getItem('adminToken');
         }
 
         async function impersonateUser(id) {
-            const result = await Swal.fire({
-                icon: 'question',
-                title: 'Login as User?',
-                text: 'You will be logged into the main dashboard as this user.',
-                showCancelButton: true,
-                confirmButtonColor: '#5d8df4',
-                confirmButtonText: 'Proceed'
-            });
+  const result = await Swal.fire({
+    icon: 'question',
+    title: 'Login as User?',
+    text: 'You will be logged into the main dashboard as this user.',
+    showCancelButton: true,
+    confirmButtonColor: '#5d8df4',
+    confirmButtonText: 'Proceed'
+  });
 
-            if (result.isConfirmed) {
-                try {
-const token = localStorage.getItem('adminToken'); 
-    if (!token) throw new Error('No token found');
+  if (!result.isConfirmed) return;
 
-                    const res = await fetch(`https://changes-sample.onrender.com/api/admin/users/${id}/impersonate`, { method: 'POST' , credentials:"include",
- headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` // ✅ Send JWT
-      }});
-                    if (res.ok) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Impersonating',
-                            text: 'Opening user dashboard...',
-                            timer: 1500,
-                            confirmButtonColor: '#5d8df4'
-                        }).then(() => {
-                            window.open('./dashboard.html', '_blank');
-                        });
-                        document.getElementById('impersonationBar').classList.add('active');
-                    }
-                } catch (err) {
-                    Swal.fire({ icon: 'error', title: 'Error', text: 'Failed to impersonate user', confirmButtonColor: '#5d8df4' });
-                }
-            }
+  try {
+    // 1️⃣ Get admin token
+    const token = localStorage.getItem('adminToken');
+    if (!token) throw new Error('No admin token found');
+
+    // 2️⃣ Call impersonation endpoint
+    const res = await fetch(
+      `https://changes-sample.onrender.com/api/admin/users/${id}/impersonate`,
+      {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         }
+      }
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || 'Impersonation failed');
+    }
+
+    // 3️⃣ Store impersonation token
+    if (data.token) {
+      localStorage.setItem('token', data.token);
+    }
+
+    // 4️⃣ Success feedback
+    await Swal.fire({
+      icon: 'success',
+      title: 'Impersonating',
+      text: 'Opening user dashboard...',
+      timer: 1500,
+      showConfirmButton: false
+    });
+
+    // 5️⃣ UI + redirect
+    document.getElementById('impersonationBar')?.classList.add('active');
+    window.open('./dashboard.html', '_blank');
+
+  } catch (err) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: err.message || 'Failed to impersonate user',
+      confirmButtonColor: '#5d8df4'
+    });
+  }
+}
+
 
         async function stopImpersonation() {
             await fetch('https://changes-sample.onrender.com/api/admin/stop-impersonation', { method: 'POST' , credentials:"include",
