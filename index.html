@@ -1968,8 +1968,8 @@ document
             }
             
             try {
-const token = localStorage.getItem('token'); 
-    if (!token) throw new Error('No token found');
+// const token = localStorage.getItem('token'); 
+//     if (!token) throw new Error('No token found');
 
                 const res = await fetch(`https://changes-sample.onrender.com/api/marketplace/search?q=${encodeURIComponent(query)}`);
                 if (!res.ok) throw new Error('Search failed');

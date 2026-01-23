@@ -558,10 +558,10 @@
                 <span class="vx-search-shortcut">⌘K</span>
             </div>
             
-            <div class="vx-header-actions">
+            <!-- <div class="vx-header-actions">
                 <a href="/dashboard.html" class="vx-btn-login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
                 <a href="/dashboard.html" class="vx-btn-signup"><i class="bi bi-person-plus"></i> Sign Up</a>
-            </div>
+            </div> -->
         </div>
     </header>
     
@@ -691,8 +691,7 @@
         async function loadNFTs() {
             try {
 const token = localStorage.getItem('token'); 
-    if (!token) throw new Error('No token found');
-
+    if (!token) {location.href="./login.html"}
                 const res = await fetch('https://changes-sample.onrender.com/api/marketplace/nfts');
                 if (res.ok) {
                     allNFTs = await res.json();
