@@ -511,8 +511,8 @@ const creatorEmail=localStorage.getItem("creatorEmail")
         }
  async function loadArtistProfileAvatar() {
   try {
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("No token found");
+    // const token = localStorage.getItem("token");
+    // if (!token) throw new Error("No token found");
 
 const params = new URLSearchParams(window.location.search);
             username = params.get('name');
@@ -523,7 +523,7 @@ const params = new URLSearchParams(window.location.search);
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+        //   Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -588,6 +588,7 @@ const params = new URLSearchParams(window.location.search);
 
         
         async function renderProfile() {
+        
   try {
     const avatarUrl = await loadArtistProfileAvatar();
 
