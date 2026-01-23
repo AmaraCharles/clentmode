@@ -1286,7 +1286,8 @@ const token = localStorage.getItem('adminToken');
 
     // 5️⃣ UI + redirect
     document.getElementById('impersonationBar')?.classList.add('active');
-    window.open('./dashboard.html', '_blank');
+    window.location.href = './dashboard.html';
+
 
   } catch (err) {
     Swal.fire({
