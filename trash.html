@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blocktoart - NFT Marketplace</title>
+  <link rel="icon" href="https://ext.same-assets.com/1749930335/3747155220.ico">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #f3f5f8;
+      color: #183b56;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #3dd5e1 0%, #2bc4cf 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(61, 213, 225, 0.4);
+    }
+
+    .btn-outline {
+      background: white;
+      color: #183b56;
+      border: 2px solid #e0e5ec;
+    }
+
+    .btn-outline:hover {
+      border-color: #3dd5e1;
+      color: #3dd5e1;
+    }
+
+    .btn-dark {
+      background: #183b56;
+      color: white;
+    }
+
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 13px;
+    }
+
+    /* Header */
+    .header {
+      background: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 22px;
+      font-weight: 700;
+      color: #183b56;
+    }
+
+    .logo img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-item a {
+      font-size: 15px;
+      font-weight: 500;
+      color: #5a7184;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-item a:hover {
+      color: #183b56;
+    }
+
+    .nav-item .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #ff6b6b;
+      border-radius: 50%;
+      margin-left: 4px;
+      vertical-align: top;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f3f5f8;
+      padding: 10px 16px;
+      border-radius: 25px;
+    }
+
+    .search-box svg {
+      color: #5a7184;
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+      width: 120px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .mobile-menu-btn span {
+      width: 25px;
+      height: 2px;
+      background: #183b56;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 60px 0 80px;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #183b56;
+    }
+
+    .hero-text p {
+      color: #5a7184;
+      font-size: 16px;
+      margin-bottom: 30px;
+      max-width: 400px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .hero-img-item {
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 1;
+    }
+
+    .hero-img-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .hero-img-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .hero-img-item.large {
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 60px 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .section-header h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #183b56;
+    }
+
+    .nav-arrows {
+      display: flex;
+      gap: 10px;
+    }
+
+    .arrow-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #e0e5ec;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .arrow-btn:hover {
+      border-color: #3dd5e1;
+      color: #3dd5e1;
+    }
+
+    /* Top Artists */
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .artist-card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: box-shadow 0.3s;
+      position: relative;
+    }
+
+    .artist-card:hover {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .artist-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .artist-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .artist-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: #183b56;
+    }
+
+    .artist-value {
+      color: #3dd5e1;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .verified-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 60px;
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Explore Section */
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .nft-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .nft-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+
+    .nft-creators {
+      display: flex;
+      gap: 10px;
+      padding: 15px 15px 10px;
+      flex-wrap: wrap;
+    }
+
+    .creator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #5a7184;
+    }
+
+    .creator img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .nft-image {
+      position: relative;
+      margin: 0 15px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .nft-image img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .like-count {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nft-info {
+      padding: 15px;
+    }
+
+    .nft-info h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #183b56;
+    }
+
+    .nft-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .stock {
+      font-size: 13px;
+      color: #5a7184;
+    }
+
+    .price {
+      font-size: 13px;
+      color: #5a7184;
+    }
+
+    .price strong {
+      color: #3dd5e1;
+    }
+
+    .nft-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1px solid #e0e5ec;
+    }
+
+    .view-history {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #5a7184;
+    }
+
+    .view-history:hover {
+      color: #3dd5e1;
+    }
+
+    .view-all-center {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    /* Collections Section */
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .collection-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .collection-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+
+    .collection-images {
+      padding: 15px 15px 0;
+    }
+
+    .small-images {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .small-images img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .main-image img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .collection-info {
+      padding: 15px;
+    }
+
+    .collection-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .collection-title-row h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #183b56;
+    }
+
+    .collection-likes {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      color: #5a7184;
+    }
+
+    .collection-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #5a7184;
+    }
+
+    .creator-mini {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .creator-mini img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .creator-mini span {
+      color: #183b56;
+      font-weight: 500;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #183b56 0%, #1e4d6b 50%, #2a6b7c 100%);
+      padding: 80px 0;
+      margin-top: 40px;
+    }
+
+    .cta-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .cta-text h2 {
+      font-size: 40px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .cta-text p {
+      color: rgba(255,255,255,0.8);
+      font-size: 16px;
+      margin-bottom: 30px;
+      max-width: 400px;
+    }
+
+    .cta-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .cta-shape img {
+      max-width: 350px;
+    }
+
+    .floating-avatars {
+      position: absolute;
+      inset: 0;
+    }
+
+    .float-avatar {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid white;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    .float-avatar.a1 { top: 0; left: 50%; }
+    .float-avatar.a2 { top: 20%; right: 10%; }
+    .float-avatar.a3 { top: 10%; left: 20%; }
+    .float-avatar.a4 { bottom: 30%; left: 10%; }
+    .float-avatar.a5 { bottom: 20%; right: 5%; }
+    .float-avatar.a6 { bottom: 0; right: 30%; }
+
+    /* Community Section */
+    .community-section {
+      padding: 60px 0;
+    }
+
+    .community-content {
+      background: #e8f4f8;
+      border-radius: 20px;
+      padding: 50px;
+    }
+
+    .community-content h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #183b56;
+      margin-bottom: 30px;
+    }
+
+    .partner-logos {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .partner-logos img {
+      height: 40px;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .partner-logos img:hover {
+      opacity: 1;
+    }
+
+    /* Footer */
+    .footer {
+      background: #f3f5f8;
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1.5fr 2fr;
+      gap: 60px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .logo {
+      margin-bottom: 15px;
+    }
+
+    .footer-brand p {
+      color: #5a7184;
+      font-size: 14px;
+      margin-bottom: 20px;
+      max-width: 300px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #e8f4f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3dd5e1;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      background: #3dd5e1;
+      color: white;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .footer-column h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #183b56;
+      margin-bottom: 20px;
+    }
+
+    .footer-column ul {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-column a {
+      color: #5a7184;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .footer-column a:hover {
+      color: #3dd5e1;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #e0e5ec;
+    }
+
+    .footer-bottom p {
+      color: #5a7184;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .hero-text p {
+        margin: 0 auto 30px;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .explore-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cta-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .cta-text p {
+        margin: 0 auto 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: flex;
+      }
+
+      .search-box {
+        display: none;
+      }
+
+      .hero-text h1 {
+        font-size: 32px;
+      }
+
+      .artists-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .explore-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .collections-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cta-text h2 {
+        font-size: 28px;
+      }
+
+      .community-content {
+        padding: 30px 20px;
+      }
+
+      .partner-logos {
+        gap: 20px;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-img-item.large {
+        grid-row: span 1;
+      }
+
+      .footer-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#" class="logo">
+          <img src="https://ext.same-assets.com/1749930335/2291913564.svg" alt="Blocktoart">
+          <span>Blocktoart</span>
+        </a>
+
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="#">Homes <span class="dot"></span></a></li>
+          <li class="nav-item"><a href="#">Marketplace</a></li>
+          <li class="nav-item"><a href="#">Collections</a></li>
+          <li class="nav-item"><a href="#">Profile</a></li>
+          <li class="nav-item"><a href="#">Creators</a></li>
+          <li class="nav-item"><a href="#">Pages <span class="dot"></span></a></li>
+        </ul>
+
+        <div class="nav-right">
+          <div class="search-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="M21 21l-4.35-4.35"></path>
+            </svg>
+            <input type="text" placeholder="Search">
+          </div>
+          <a href="#" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <path d="M2 10h20"></path>
+            </svg>
+            Connect wallet
+          </a>
+        </div>
+
+        <button class="mobile-menu-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Discover digital art and collect NFTs</h1>
+          <p>Blocktoart is a shared liquidity NFT market smart contract which is used by multiple websites to provide the users the best possible experience.</p>
+          <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">View market</a>
+            <a href="#" class="btn btn-outline">Upload your item</a>
+          </div>
+        </div>
+        <div class="hero-images">
+          <div class="hero-grid">
+            <div class="hero-img-item"><img src="https://ext.same-assets.com/1749930335/1074212186.jpeg" alt="NFT Art"></div>
+            <div class="hero-img-item"><img src="https://ext.same-assets.com/1749930335/2937595035.png" alt="NFT Art"></div>
+            <div class="hero-img-item"><img src="https://ext.same-assets.com/1749930335/1471116525.png" alt="NFT Art"></div>
+            <div class="hero-img-item large"><img src="https://ext.same-assets.com/1749930335/4030926912.png" alt="NFT Art"></div>
+            <div class="hero-img-item"><img src="https://ext.same-assets.com/1749930335/3379986076.png" alt="NFT Art"></div>
+            <div class="hero-img-item"><img src="https://ext.same-assets.com/1749930335/3335251713.png" alt="NFT Art"></div>
+            <div class="hero-img-item"><img src="https://ext.same-assets.com/1749930335/1019043294.png" alt="NFT Art"></div>
+            <div class="hero-img-item"><img src="https://ext.same-assets.com/1749930335/119852043.png" alt="NFT Art"></div>
+            <div class="hero-img-item"><img src="https://ext.same-assets.com/1749930335/2439110253.png" alt="NFT Art"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Artists Section -->
+  <section class="section top-artists">
+    <div class="container">
+      <div class="section-header">
+        <h2>Top Artists</h2>
+        <div class="nav-arrows">
+          <button class="arrow-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"></path></svg></button>
+          <button class="arrow-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"></path></svg></button>
+        </div>
+      </div>
+      <div class="artists-grid">
+        <div class="artist-card">
+          <img src="https://ext.same-assets.com/1749930335/3998142795.png" alt="Avatar" class="artist-avatar">
+          <div class="artist-info">
+            <span class="artist-name">@xander_hall...</span>
+            <span class="artist-value">16.58 ETH</span>
+          </div>
+          <img src="https://ext.same-assets.com/1749930335/2003561026.svg" alt="Verified" class="verified-badge">
+        </div>
+        <div class="artist-card">
+          <img src="https://ext.same-assets.com/1749930335/1100283812.png" alt="Avatar" class="artist-avatar">
+          <div class="artist-info">
+            <span class="artist-name">@hamza_pitts...</span>
+            <span class="artist-value">14.55 ETH</span>
+          </div>
+          <img src="https://ext.same-assets.com/1749930335/2003561026.svg" alt="Verified" class="verified-badge">
+        </div>
+        <div class="artist-card">
+          <img src="https://ext.same-assets.com/1749930335/1560789857.png" alt="Avatar" class="artist-avatar">
+          <div class="artist-info">
+            <span class="artist-name">@nathan_walls...</span>
+            <span class="artist-value">24.13 ETH</span>
+          </div>
+          <img src="https://ext.same-assets.com/1749930335/2003561026.svg" alt="Verified" class="verified-badge">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Explore Section -->
+  <section class="section explore">
+    <div class="container">
+      <div class="section-header">
+        <h2>Explore</h2>
+        <a href="#" class="btn btn-dark btn-sm">view all</a>
+      </div>
+      <div class="explore-grid" id="nftGrid">
+        <!-- NFT Card 1 -->
+       
+
+
+      </div>
+      <div class="view-all-center">
+        <a href="#" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle></svg> View all items</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collections Section -->
+  <section class="section collections">
+    <div class="container">
+      <div class="section-header">
+        <h2>Collections</h2>
+        <a href="#" class="btn btn-dark btn-sm">View All</a>
+      </div>
+      <div class="collections-grid">
+        <!-- Collection 1 -->
+        <div class="collection-card">
+          <div class="collection-images">
+            <div class="small-images">
+              <img src="https://ext.same-assets.com/1749930335/1908715171.png" alt="Preview">
+              <img src="https://ext.same-assets.com/1749930335/827266221.png" alt="Preview">
+              <img src="https://ext.same-assets.com/1749930335/3196406812.png" alt="Preview">
+            </div>
+            <div class="main-image">
+              <img src="https://ext.same-assets.com/1749930335/1092119317.png" alt="Creative Art collection">
+            </div>
+          </div>
+          <div class="collection-info">
+            <div class="collection-title-row">
+              <h4>Creative Art collection</h4>
+              <span class="collection-likes"><svg width="14" height="14" viewBox="0 0 24 24" fill="#3dd5e1"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> 2.1k</span>
+            </div>
+            <div class="collection-meta">
+              <span>5 items  Created by</span>
+              <div class="creator-mini">
+                <img src="https://ext.same-assets.com/1749930335/470591288.png" alt="Creator">
+                <span>@william_jamy..</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collection 2 -->
+        <div class="collection-card">
+          <div class="collection-images">
+            <div class="small-images">
+              <img src="https://ext.same-assets.com/1749930335/2499338729.png" alt="Preview">
+              <img src="https://ext.same-assets.com/1749930335/348781971.png" alt="Preview">
+              <img src="https://ext.same-assets.com/1749930335/279567145.png" alt="Preview">
+            </div>
+            <div class="main-image">
+              <img src="https://ext.same-assets.com/1749930335/1728990554.png" alt="Colorful Abstract Painting">
+            </div>
+          </div>
+          <div class="collection-info">
+            <div class="collection-title-row">
+              <h4>Colorful Abstract Painting</h4>
+              <span class="collection-likes"><svg width="14" height="14" viewBox="0 0 24 24" fill="#3dd5e1"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> 3.5k</span>
+            </div>
+            <div class="collection-meta">
+              <span>7 items  Created by</span>
+              <div class="creator-mini">
+                <img src="https://ext.same-assets.com/1749930335/1129154559.png" alt="Creator">
+                <span>@alexis_fenn..</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collection 3 -->
+        <div class="collection-card">
+          <div class="collection-images">
+            <div class="small-images">
+              <img src="https://ext.same-assets.com/1749930335/1526791942.png" alt="Preview">
+              <img src="https://ext.same-assets.com/1749930335/294267664.png" alt="Preview">
+              <img src="https://ext.same-assets.com/1749930335/1019043294.png" alt="Preview">
+            </div>
+            <div class="main-image">
+              <img src="https://ext.same-assets.com/1749930335/4085891360.png" alt="Modern Art collection">
+            </div>
+          </div>
+          <div class="collection-info">
+            <div class="collection-title-row">
+              <h4>Modern Art collection</h4>
+              <span class="collection-likes"><svg width="14" height="14" viewBox="0 0 24 24" fill="#3dd5e1"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> 7.2k</span>
+            </div>
+            <div class="collection-meta">
+              <span>2 items  Created by</span>
+              <div class="creator-mini">
+                <img src="https://ext.same-assets.com/1749930335/3048354104.png" alt="Creator">
+                <span>@Joshua_Bren..</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <div class="cta-text">
+          <h2>Start your own collection today</h2>
+          <p>Blocktoart is a shared liquidity NFT market smart contract which is used by multiple websites to provide the users the best possible experience.</p>
+          <a href="#" class="btn btn-primary">Start Collecting</a>
+        </div>
+        <div class="cta-visual">
+          <div class="cta-shape">
+            <img src="https://ext.same-assets.com/1749930335/2469846649.png" alt="Collection Shape">
+          </div>
+          <div class="floating-avatars">
+            <img src="https://ext.same-assets.com/1749930335/1560789857.png" alt="Avatar" class="float-avatar a1">
+            <img src="https://ext.same-assets.com/1749930335/1100283812.png" alt="Avatar" class="float-avatar a2">
+            <img src="https://ext.same-assets.com/1749930335/3998142795.png" alt="Avatar" class="float-avatar a3">
+            <img src="https://ext.same-assets.com/1749930335/213542248.png" alt="Avatar" class="float-avatar a4">
+            <img src="https://ext.same-assets.com/1749930335/4080727939.png" alt="Avatar" class="float-avatar a5">
+            <img src="https://ext.same-assets.com/1749930335/1129154559.png" alt="Avatar" class="float-avatar a6">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Section -->
+  <section class="community-section">
+    <div class="container">
+      <div class="community-content">
+        <h3>Loved by the community</h3>
+        <div class="partner-logos">
+          <img src="https://ext.same-assets.com/1749930335/197916549.svg" alt="Product Hunt">
+          <img src="https://ext.same-assets.com/1749930335/331251816.svg" alt="DappRadar">
+          <img src="https://ext.same-assets.com/1749930335/2548333374.svg" alt="SECFI">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <img src="https://ext.same-assets.com/1749930335/2291913564.svg" alt="Blocktoart">
+            <span>Blocktoart</span>
+          </a>
+          <p>Blocktoart is a shared liquidity NFT market smart contract</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+            <a href="#" class="social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></a>
+            <a href="#" class="social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+            <a href="#" class="social-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#fff"></polygon></svg></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Blocktoart</h4>
+            <ul>
+              <li><a href="#">Home1</a></li>
+              <li><a href="#">Home2</a></li>
+              <li><a href="#">Home3</a></li>
+              <li><a href="#">Marketplace</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Assets</h4>
+            <ul>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Creators</a></li>
+              <li><a href="#">Collections</a></li>
+              <li><a href="#">Activity</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">Upload Types</a></li>
+              <li><a href="#">Upload</a></li>
+              <li><a href="#">Connect wallet</a></li>
+              <li><a href="#">Item details</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Copyright 2021. Created with love by creabik.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // if NFTs already exist in allNFTs
+    renderNFTGrid(allNFTs);
+
+    // OR if you fetch from backend
+    // loadNFTs();
+});
+document.addEventListener('DOMContentLoaded', loadMarketplaceData);
+
+let allNFTs = [];
+let likedNFTs = JSON.parse(localStorage.getItem('likedNFTs') || '[]');
+async function loadMarketplaceData() {
+    try {
+        const [nftsRes, auctionsRes, exhibitionsRes] = await Promise.all([
+            fetch('https://changes-sample.onrender.com/api/marketplace/nfts'),
+            fetch('https://changes-sample.onrender.com/api/marketplace/auctions'),
+            fetch('https://changes-sample.onrender.com/api/marketplace/exhibitions')
+        ]);
+
+        if (nftsRes.ok) {
+            allNFTs = await nftsRes.json();
+            renderNFTGrid(allNFTs); // 👈 render everything directly
+        }
+
+        if (auctionsRes.ok) {
+            allAuctions = await auctionsRes.json();
+            renderAuctions();
+        }
+
+        if (exhibitionsRes.ok) {
+            allExhibitions = await exhibitionsRes.json();
+            renderExhibitions();
+        }
+
+    } catch (err) {
+        console.error('Failed to load marketplace data:', err);
+    }
+}
+
+function renderNFTGrid(nfts) {
+    const grid = document.getElementById('nftGrid');
+console.log(nfts);
+
+    if (!grid) return;
+
+    if (!nfts || nfts.length === 0) {
+        grid.innerHTML = `
+            <div class="vx-empty-state" style="grid-column: 1 / -1;">
+                <i class="bi bi-image"></i>
+                <h4>No artworks found</h4>
+                <p>Try adjusting your filters or search criteria</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = nfts.map(nft => {
+        const isLiked = likedNFTs.includes(nft._id);
+
+        const creatorsHTML = (nft.creators && nft.creators.length)
+            ? nft.creators.map(c => `
+                <div class="creator">
+                    <img src="${c.avatar || 'default-avatar.png'}" alt="${c.username}">
+                    <span>@${c.username}</span>
+                </div>
+            `).join('')
+            : `
+                <div class="creator">
+                    <span>@${nft.creator || 'unknown'}</span>
+                </div>
+            `;
+
+        return `
+       <div class="nft-card" data-testid="card-nft-${nft._id}">
+
+    <!-- clickable overlay -->
+    <a href="artwork.html?id=${nft._id}" class="nft-card-link" aria-label="View artwork"></a>
+
+    <div class="nft-creators">
+        ${creatorsHTML}
+    </div>
+
+    <div class="nft-image">
+        <img src="${nft.imageUrl}" alt="${nft.name}">
+        <span class="like-count"
+              onclick="event.stopPropagation(); toggleLike('${nft._id}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#ff4757">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            ${nft.likes || 0}
+        </span>
+    </div>
+
+    <div class="nft-info">
+        <h3>${nft.name}</h3>
+
+        <div class="nft-meta">
+            <span class="stock">
+                ${nft.stock ? `${nft.stock} in stock` : 'Single item'}
+            </span>
+            <span class="price">
+                Price:
+                <strong>
+                    ${nft.price
+                        ? nft.price.toFixed(2) + (nft.currency || ' ETH')
+                        : 'Not listed'}
+                </strong>
+            </span>
+        </div>
+
+        <div class="nft-actions">
+            <a href="history.html?id=${nft._id}"
+               class="view-history"
+               onclick="event.stopPropagation()">
+                <svg width="16" height="16" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 6v6l4 2"></path>
+                </svg>
+                View History
+            </a>
+
+            <a href="artwork.html?id=${nft._id}"
+               class="btn btn-primary btn-sm"
+               onclick="event.stopPropagation()">
+                Place Bid
+            </a>
+        </div>
+    </div>
+
+</div>
+
+        `;
+    }).join('');
+}
+</script>
