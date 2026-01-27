@@ -1791,34 +1791,49 @@
                 return;
             }
             
-            grid.innerHTML = nfts.map(nft => {
-                const isLiked = likedNFTs.includes(nft._id);
-                const statusBadge = nft.status === 'auction' ? 'Auction' : 
-                                   nft.status === 'listed' ? 'For Sale' : '';
+            grid.innerHTML = nfts
+    .slice(0, 20) // show only first 20 NFTs
+    .map(nft => {
+        const isLiked = likedNFTs.includes(nft._id);
+        const statusBadge =
+            nft.status === 'auction' ? 'Auction' :
+            nft.status === 'listed' ? 'For Sale' : '';
+
+        return `
+            <a href="artwork.html?id=${nft._id}" class="vx-nft-card"
+               data-testid="card-nft-${nft._id}"
+               style="text-decoration: none; color: inherit; display: block;">
                 
-                return `
-                    <a href="artwork.html?id=${nft._id}" class="vx-nft-card" data-testid="card-nft-${nft._id}" style="text-decoration: none; color: inherit; display: block;">
-                        <div class="vx-nft-image-container">
-                            <img src="${nft.imageUrl}" alt="${nft.name}" class="vx-nft-image">
-                            ${statusBadge ? `<span class="vx-nft-badge">${statusBadge}</span>` : ''}
-                            <button class="vx-nft-like ${isLiked ? 'liked' : ''}" onclick="event.preventDefault(); event.stopPropagation(); toggleLike('${nft._id}')" data-testid="button-like-${nft._id}">
-                                <i class="bi bi-heart${isLiked ? '-fill' : ''}"></i>
-                                <div class="vx-likes-count">${nft.likes || 0}</div>
-                            </button>
+                <div class="vx-nft-image-container">
+                    <img src="${nft.imageUrl}" alt="${nft.name}" class="vx-nft-image">
+                    ${statusBadge ? `<span class="vx-nft-badge">${statusBadge}</span>` : ''}
+                    
+                    <button class="vx-nft-like ${isLiked ? 'liked' : ''}"
+                        onclick="event.preventDefault(); event.stopPropagation(); toggleLike('${nft._id}')"
+                        data-testid="button-like-${nft._id}">
+                        
+                        <i class="bi bi-heart${isLiked ? '-fill' : ''}"></i>
+                        <div class="vx-likes-count">${nft.likes || 0}</div>
+                    </button>
+                </div>
+
+                <div class="vx-nft-content">
+                    <h6 class="vx-nft-title">${nft.name}</h6>
+                    <p class="vx-nft-creator">by ${nft.creator || 'Unknown'}</p>
+
+                    <div class="vx-nft-footer">
+                        <div class="vx-nft-price">
+                            ${nft.price
+                                ? nft.price.toFixed(2) + ' ' + (nft.currency || 'ETH')
+                                : 'Not listed'}
+                            <small>Current Price</small>
                         </div>
-                        <div class="vx-nft-content">
-                            <h6 class="vx-nft-title">${nft.name}</h6>
-                            <p class="vx-nft-creator">by ${nft.creator || 'Unknown'}</p>
-                            <div class="vx-nft-footer">
-                                <div class="vx-nft-price">
-                                    ${nft.price ? nft.price.toFixed(2) + ' ' + (nft.currency || 'ETH') : 'Not listed'}
-                                    <small>Current Price</small>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                `;
-            }).join('');
+                    </div>
+                </div>
+            </a>
+        `;
+    })
+    .join('');
         }
         
         function renderAuctions() {
@@ -1996,7 +2011,7 @@ document
                                 <div class="vx-artist-avatar">${artist.charAt(0).toUpperCase()}</div>
                                 <div class="vx-search-result-info">
                                     <h6>${artist}</h6>
-                                    <small>Artist Profile</small>
+                                    <small>View Profile</small>
                                 </div>
                             </a>
                         `).join('');

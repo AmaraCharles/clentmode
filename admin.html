@@ -800,6 +800,10 @@
                 <textarea class="form-input" id="editNftDescription" rows="3" data-testid="input-edit-nft-description"></textarea>
             </div>
             <div class="mb-3">
+                <label class="form-label">Category</label>
+                <textarea class="form-input" id="editNftCategory" rows="3" data-testid="input-edit-nft-description"></textarea>
+            </div>
+            <div class="mb-3">
                 <label class="form-label">Owner</label>
                 <input type="text" class="form-input" id="editNftOwner" data-testid="input-edit-nft-owner">
             </div>
@@ -1397,6 +1401,7 @@ const token = localStorage.getItem('adminToken');
                 document.getElementById('editNftName').value = nft.name;
                 document.getElementById('editNftDescription').value = nft.description || '';
                 document.getElementById('editNftOwner').value = nft.owner;
+             document.getElementById('editNftCategory').value = nft.editNftcategory;
                 document.getElementById('editNftPrice').value = nft.price || 0;
                 document.getElementById('editNftStatus').value = nft.status;
                 document.getElementById('editNftRoyalty').value = nft.royalty || 0;
@@ -1413,6 +1418,7 @@ const token = localStorage.getItem('adminToken');
                 name: document.getElementById('editNftName').value,
                 description: document.getElementById('editNftDescription').value,
                 owner: document.getElementById('editNftOwner').value,
+                 category: document.getElementById('editNftCategory').value,
                 price: parseFloat(document.getElementById('editNftPrice').value) || undefined,
                 status: document.getElementById('editNftStatus').value,
                 royalty: parseFloat(document.getElementById('editNftRoyalty').value) || 0
